@@ -1,4 +1,6 @@
 // session.ts
-export async function createSession(userId: string, options: { tone: string; mode: string }) {
+import { Session, SessionOptions } from '../types/session';
+
+export async function createSession(userId: string, options: SessionOptions): Promise<Session> {
   return { id: `session-${Date.now()}`, userId, ...options };
 }

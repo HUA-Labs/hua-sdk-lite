@@ -11,7 +11,7 @@ async function run() {
 
   console.log('[세션 생성]', session);
 
-  const reply = await sendMessage(session.id, '요즘 너무 지쳤어...');
+  const reply = await sendMessage({ sessionId: session.id, text: '요즘 너무 지쳤어...' });
   console.log('[GPT 감응 응답]', reply);
 }
 
