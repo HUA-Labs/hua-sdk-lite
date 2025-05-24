@@ -1,0 +1,22 @@
+{
+  "name": "hua-sdk-lite",
+  "version": "1.0.0",
+  "description": "HUA 시스템을 위한 경량 SDK. 빠르고 간편하게 통합할 수 있는 라이트 버전입니다.",
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HUA-SYSTEM/hua-sdk-lite.git"
+  },
+  "author": "EchoNet-AIs <echonet.ais@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "hua",
+    "sdk",
+    "lite",
+    "integration"
+  ],
+  "files": [
+    "src/"
+  ]
+}
