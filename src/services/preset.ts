@@ -13,3 +13,15 @@ export async function loadPreset(type: 'tone' | 'mode', key: string): Promise<st
     throw new Error('존재하지 않는 프리셋입니다');
   }
 }
+
+export function getTonePresets() {
+  return ["gentle", "energetic", "neutral"];
+}
+
+export function getModePresets() {
+  return ["companion", "coach", "listener"];
+}
+
+export function getTierPresets() {
+  return ["F2", "S1", "B1"];
+}

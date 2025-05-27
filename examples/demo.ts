@@ -1,18 +1,15 @@
-// demo.ts - 사용 예제
-
-import { createSession } from '../src/services/session';
+// demo.ts - 실제 API 호출 예제
 import { sendMessage } from '../src/services/message';
 
 async function run() {
-  const session = await createSession('user-123', {
-    tone: 'gentle',
-    mode: 'companion'
-  });
+  const apiKey = process.env.HUA_API_KEY || '<YOUR_API_KEY_HERE>';
+  const sessionId = 'demo-session-1';
+  const tone = 'gentle';
+  const tier = 'F2';
+  const text = '요즘 너무 지쳤어...';
 
-  console.log('[세션 생성]', session);
-
-  const reply = await sendMessage({ sessionId: session.id, text: '요즘 너무 지쳤어...' });
-  console.log('[GPT 감응 응답]', reply);
+  const reply = await sendMessage({ apiKey, sessionId, text, tone, tier });
+  console.log('[API 응답]', reply);
 }
 
 run();
