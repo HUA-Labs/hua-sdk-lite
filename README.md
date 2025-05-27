@@ -1,40 +1,74 @@
 # hua-sdk-lite
 
+[English README](./README.en.md)
+
+---
+
+> 이 문서는 **한국어 전용**입니다. 영어 사용자는 상단의 링크를 통해 영어판(README.en.md)을 참고해 주세요.
+
+---
+
 [![npm version](https://img.shields.io/npm/v/hua-sdk-lite?color=blue)](https://www.npmjs.com/package/hua-sdk-lite)
 [![npm downloads](https://img.shields.io/npm/dm/hua-sdk-lite.svg)](https://www.npmjs.com/package/hua-sdk-lite)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-✔️-3178c6?logo=typescript)](https://www.typescriptlang.org/)
 
-**HUA SDK Lite**
+## **HUA SDK Lite**
 
 > 감정 기반 톤/모드 프리셋을 사용하는 경량 AI SDK입니다. (KOR)
->
-> Lightweight AI SDK with emotion-based tone/mode presets. (ENG)
 
 ---
 
-## **설치(Install) & 빠른 시작(Quick Start)**
+## **설치 & 빠른 시작**
 
 ```bash
 npm install hua-sdk-lite
 ```
 
 ```ts
-import { sessionService, messageService } from 'hua-sdk-lite';
+import { sendMessage } from 'hua-sdk-lite';
 
-const session = sessionService.createSession({ userId: 'user-001', tone: 'gentle' });
-const msg = messageService.createMessage('안녕하세요!', session.id);
+const apiKey = '<YOUR_API_KEY>';
+const sessionId = 'demo-session-1';
+const tone = 'gentle';
+const tier = 'F2';
+const text = '요즘 너무 지쳤어...';
 
-fetch('https://api.hua.system/chat', {
-  method: 'POST',
-  body: JSON.stringify(msg),
-  headers: { 'Content-Type': 'application/json' }
-})
-  .then(res => res.json())
-  .then(data => console.log(data));
+const reply = await sendMessage({ apiKey, sessionId, text, tone, tier });
+console.log('[API 응답]', reply);
 ```
 
 ---
+
+## 프리셋 목록
+
+- tone: gentle, energetic, neutral
+- mode: companion, coach, listener
+- tier: F2, S1, B1
+
+---
+
+## 엔드포인트
+
+- 실제 API 호출: `https://api.hua.ai.kr/api/lite-hua`
+- API Key는 [공식 API 사이트](https://api.hua.ai.kr)에서 발급
+
+---
+
+## 사용량 리미트
+
+- 일간: 200회 (테스트 중 3회)
+- 월간: 5000회
+
+---
+
+## 문의/이슈
+
+- <echonet.ais@gmail.com>
+
+---
+
+> 영어 사용자는 [README.en.md](./README.en.md)를 참고해 주세요.
 
 **키워드(Keywords):**
 `hua`, `sdk`, `lite`, `ai`, `llm`, `chat`, `integration`, `typescript`, `emotion`, `preset`, `tone`, `mode`
@@ -199,7 +233,7 @@ Node.js/TypeScript 환경에서 가장 핵심적인 메시지, 세션, 프리셋
 
 ## 참고 문서
 
-<!-- 공식 API 명세는 곧 공개 예정입니다! -->
+공식 API 명세는 곧 공개 예정입니다!
 <!-- - [HUA_CHAT_API 명세 (공개용)](docs/HUA_CHAT_API_v1.0.md) -->
 <!-- - [HUA_API 명세 (공개용)](docs/HUA_API.md) -->
 
