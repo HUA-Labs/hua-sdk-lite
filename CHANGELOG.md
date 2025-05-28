@@ -66,4 +66,15 @@
 - `sendMessage()` 함수 정의
 - tone/mode/tier 구조 선언만 존재, 실제 응답 없음
 - README.md와 기능 간 차이 존재
+
+## [1.2.1] - 2025-05-29
+
+### 패키징/배포 자동화 및 타입스크립트 빌드 개선
+- npm 패키지 구조 최적화: `dist/` 빌드 산출물만 포함, README/LISENCE만 추가
+- TypeScript 빌드 및 타입 선언(.d.ts) 자동 생성 구조 확립 (`tsconfig.json` 신규 작성)
+- Node.js 환경 타입(@types/node) 명시적 도입, process.env 등 타입 에러 해결
+- 프리셋 서비스 타입 명확화로 TypeScript 인덱싱 에러 해결
+- package.json: main/types/scripts/files 등 npm 배포 표준에 맞게 정비
+- prepublishOnly 스크립트로 배포 전 자동 빌드
+- 기타: 내부 예제/문서/테스트 등은 패키지에서 제외
 ```
