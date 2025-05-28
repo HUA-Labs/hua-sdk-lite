@@ -1,0 +1,29 @@
+[
+  {
+    "key": "F2",
+    "ko": "F2 티어",
+    "en": "F2 tier",
+    "description": {
+      "ko": "기본 응답 스타일, 짧고 간결한 답변.",
+      "en": "Basic response style, short and concise answers."
+    }
+  },
+  {
+    "key": "S1",
+    "ko": "S1 티어",
+    "en": "S1 tier",
+    "description": {
+      "ko": "중간 길이, 약간 더 상세한 답변.",
+      "en": "Medium length, slightly more detailed answers."
+    }
+  },
+  {
+    "key": "B1",
+    "ko": "B1 티어",
+    "en": "B1 tier",
+    "description": {
+      "ko": "가장 상세하고 긴 답변.",
+      "en": "Most detailed and lengthy answers."
+    }
+  }
+] 
