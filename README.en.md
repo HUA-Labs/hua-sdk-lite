@@ -18,11 +18,11 @@
 
 ## **Main Features**
 
-*   **Easy Session Management**: Effortlessly start and manage user-specific conversation sessions with the `createSession` function.
-*   **Intelligent Message Sending**: Receive empathic AI responses based on session settings using the `sendMessage` function.
-*   **Preset Utilization**: Retrieve descriptions for defined `tone` and `mode` presets with the `loadPreset` function.
-*   **TypeScript Support**: All functionalities are typed for robust development.
-*   **Lightweight**: Core-feature focused for quick installation and use.
+* **Easy Session Management**: Effortlessly start and manage user-specific conversation sessions with the `createSession` function.
+* **Intelligent Message Sending**: Receive empathic AI responses based on session settings using the `sendMessage` function.
+* **Preset Utilization**: Retrieve descriptions for defined `tone` and `mode` presets with the `loadPreset` function.
+* **TypeScript Support**: All functionalities are typed for robust development.
+* **Lightweight**: Core-feature focused for quick installation and use.
 
 ---
 
@@ -42,6 +42,7 @@ To use the `sendMessage` function in this SDK, a HUA API Key is required. The AP
 ```bash
 export HUA_API_KEY="<YOUR_API_KEY_HERE>"
 ```
+
 (Please set the environment variable according to your application's execution environment, e.g., in an `.env` file or server environment variables.)
 
 ---
@@ -131,16 +132,16 @@ demoApp();
 
 The SDK and API use the following preset values. You can set these via the `options` object when calling `createSession`.
 
-*   **`tone`**: Determines the overall emotional feeling of the response.
-    *   `gentle`: A soft and mild tone.
-    *   `energetic`: A vibrant and enthusiastic tone.
-    *   `neutral`: A neutral and calm tone.
-*   **`mode`**: Sets the conversational role of the AI.
-    *   `companion`: A comfortable, friend-like conversation partner.
-    *   `coach`: A goal-oriented role that provides advice.
-    *   `listener`: A role that primarily listens and empathizes with the user.
-*   **`tier`**: Indicates the style or complexity of the response.
-    *   `F2`, `S1`, `B1`
+* **`tone`**: Determines the overall emotional feeling of the response.
+  * `gentle`: A soft and mild tone.
+  * `energetic`: A vibrant and enthusiastic tone.
+  * `neutral`: A neutral and calm tone.
+* **`mode`**: Sets the conversational role of the AI.
+  * `companion`: A comfortable, friend-like conversation partner.
+  * `coach`: A goal-oriented role that provides advice.
+  * `listener`: A role that primarily listens and empathizes with the user.
+* **`tier`**: Indicates the style or complexity of the response.
+  * `F2`, `S1`, `B1`
 
 *Note: If invalid or unsupported values are passed for the `tone`, `mode`, or `tier` parameters, the API system may process that parameter with an internal default value ("default") to generate a response.* (Information based on API documentation)
 
