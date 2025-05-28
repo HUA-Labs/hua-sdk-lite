@@ -2,10 +2,18 @@
 import { Session, SessionOptions } from '../types/session';
 
 // In-memory store for session data
-const sessionStore: Record<string, { userId: string, tone: string, mode: string }> = {};
+
+interface StoredSessionDetails {
+  userId: string;
+  tone: string;
+  mode: string;
+  tier?: string; // Re-added tier
+}
+
+const sessionStore: Record<string, StoredSessionDetails> = {};
 
 // Function to retrieve session details (will be used by sendMessage)
-export function getSessionDetails(sessionId: string): { userId: string, tone: string, mode: string } | undefined {
+export function getSessionDetails(sessionId: string): StoredSessionDetails | undefined {
   return sessionStore[sessionId];
 }
 
@@ -17,13 +25,15 @@ export async function createSession(userId: string, options: SessionOptions): Pr
     userId,
     tone: options.tone,
     mode: options.mode,
+    tier: options.tier, // Added tier
   };
   
-  // Return the session object
+  // Return the session object, including tier
   return {
     id,
     userId,
     tone: options.tone,
     mode: options.mode,
+    tier: options.tier, // Added tier
   };
 }

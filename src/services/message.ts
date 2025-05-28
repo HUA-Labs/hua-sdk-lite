@@ -13,7 +13,25 @@ export async function sendMessage(sessionId: string, message: string): Promise<s
     throw new Error('HUA_API_KEY environment variable is not set.');
   }
 
-  const { tone, mode } = sessionDetails;
+  const { tone, mode, tier } = sessionDetails; // Extract tier
+
+  // Construct payload, conditionally adding tier if it exists
+  const payload: {
+    session_id: string;
+    text: string;
+    tone: string;
+    mode: string;
+    tier?: string; // Make tier optional in payload type
+  } = {
+    session_id: sessionId,
+    text: message,
+    tone,
+    mode,
+  };
+
+  if (tier !== undefined) { // Only add tier to payload if it has a value
+    payload.tier = tier;
+  }
 
   const res = await fetch('https://api.hua.ai.kr/api/lite-hua', {
     method: 'POST',
@@ -21,13 +39,7 @@ export async function sendMessage(sessionId: string, message: string): Promise<s
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${apiKey}`,
     },
-    body: JSON.stringify({
-      session_id: sessionId,
-      text: message, // 'text' is the field name the API expects
-      tone,
-      mode, // Added mode
-      // 'tier' is omitted as per plan
-    }),
+    body: JSON.stringify(payload), // Send the constructed payload
   });
 
   if (!res.ok) {

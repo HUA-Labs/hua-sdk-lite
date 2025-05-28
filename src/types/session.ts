@@ -3,6 +3,7 @@
 export interface SessionOptions {
   tone: string;
   mode: string;
+  tier?: string; // Re-added tier
 }
 
 export interface Session {
@@ -10,4 +11,5 @@ export interface Session {
   userId: string;
   tone: string;
   mode: string;
+  tier?: string; // Re-added tier
 }

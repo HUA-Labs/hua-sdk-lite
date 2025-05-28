@@ -20,6 +20,7 @@ async function main() { // Renamed to main
     const session = await createSession('demo-user-001', {
       tone: 'gentle',
       mode: 'companion',
+      tier: 'F2', // Added tier with a sample value
     });
     console.log('[Session Created]', session);
 
