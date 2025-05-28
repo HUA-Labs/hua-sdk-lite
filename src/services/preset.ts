@@ -1,17 +1,31 @@
 // preset.ts
-export async function loadPreset(type: 'tone' | 'mode', key: string): Promise<string> {
-  const presets: Record<'tone' | 'mode', Record<string, string>> = {
-    tone: { gentle: '부드러운 톤입니다.' },
-    mode: { companion: '동반자 모드입니다.' }
-  };
+import type { PresetType, Preset } from '../types/preset';
+import tonePresets from '../presets/tone.json';
+import modePresets from '../presets/mode.json';
+import tierPresets from '../presets/tier.json';
 
-  const presetValue = presets[type]?.[key];
+const presetMap: Record<PresetType, Preset[]> = {
+  tone: tonePresets as Preset[],
+  mode: modePresets as Preset[],
+  tier: tierPresets as Preset[],
+};
 
-  if (presetValue) {
-    return presetValue;
+export async function loadPreset(type: PresetType, key: string, lang: 'ko' | 'en' = 'ko'): Promise<string> {
+  const preset = presetMap[type].find(p => p.key === key);
+  if (preset) {
+    // lang이 있으면 해당 언어 설명, 없으면 기본값(ko)
+    return preset.description[lang] || preset.description.ko;
   } else {
-    throw new Error('존재하지 않는 프리셋입니다');
+    throw new Error(lang === 'en' ? 'Preset not found.' : '존재하지 않는 프리셋입니다');
   }
+}
+
+export function getPresets(type: PresetType): Preset[] {
+  return presetMap[type];
+}
+
+export function getPresetKeys(type: PresetType): string[] {
+  return presetMap[type].map(p => p.key);
 }
 
 export function getTonePresets() {
