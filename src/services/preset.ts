@@ -1,6 +1,6 @@
 // preset.ts
 export async function loadPreset(type: 'tone' | 'mode', key: string): Promise<string> {
-  const presets = {
+  const presets: Record<'tone' | 'mode', Record<string, string>> = {
     tone: { gentle: '부드러운 톤입니다.' },
     mode: { companion: '동반자 모드입니다.' }
   };
