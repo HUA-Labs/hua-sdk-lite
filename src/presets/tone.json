@@ -1,0 +1,29 @@
+[
+  {
+    "key": "gentle",
+    "ko": "부드러운 톤",
+    "en": "Gentle tone",
+    "description": {
+      "ko": "부드럽고 온화한 톤입니다.",
+      "en": "A soft and gentle tone."
+    }
+  },
+  {
+    "key": "energetic",
+    "ko": "활기찬 톤",
+    "en": "Energetic tone",
+    "description": {
+      "ko": "활기차고 열정적인 톤입니다.",
+      "en": "An energetic and passionate tone."
+    }
+  },
+  {
+    "key": "neutral",
+    "ko": "중립 톤",
+    "en": "Neutral tone",
+    "description": {
+      "ko": "중립적이고 차분한 톤입니다.",
+      "en": "A neutral and calm tone."
+    }
+  }
+] 

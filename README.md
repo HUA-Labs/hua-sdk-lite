@@ -151,11 +151,50 @@ SDK 및 API는 다음과 같은 프리셋 값을 사용합니다. `createSession
 
 ---
 
-## 엔드포인트
+## **프리셋 구조 및 다국어(i18n) 지원**
 
-* 실제 API 호출: `https://api.hua.ai.kr/api/lite-hua`
-* API Key는 [공식 API 사이트](https://api.hua.ai.kr)에서 발급 (링크는 예시이며, 실제 유효한 주소로 연결 필요)
+hua-sdk-lite는 tone/mode/tier 프리셋 정보를 외부 JSON 파일로 관리하며, 한글/영문 등 다국어 설명을 지원합니다.
+
+* 프리셋 구조 예시 (src/presets/tone.json):
+
+  ```json
+  [
+    {
+      "key": "gentle",
+      "ko": "부드러운 톤",
+      "en": "Gentle tone",
+      "description": {
+        "ko": "상대방의 마음을 어루만지는, 따뜻하고 배려 깊은 톤입니다.",
+        "en": "A warm, considerate tone that soothes and comforts the listener."
+      }
+    }
+  ]
+  ```
+
+* SDK 함수에서 원하는 언어로 프리셋 설명을 조회할 수 있습니다.
+
+### **프리셋 다국어 예제**
+
+```typescript
+import { loadPreset } from 'hua-sdk-lite';
+
+async function testPresetI18n() {
+  console.log(await loadPreset('tone', 'gentle', 'ko')); // 부드럽고 온화한 톤입니다.
+  console.log(await loadPreset('tone', 'gentle', 'en')); // A soft and gentle tone.
+  console.log(await loadPreset('mode', 'coach', 'ko'));  // 목표 지향적이고 조언을 제공하는 역할.
+  console.log(await loadPreset('mode', 'coach', 'en'));  // A goal-oriented and advice-giving role.
+  console.log(await loadPreset('tier', 'B1', 'ko'));     // 가장 상세하고 긴 답변.
+  console.log(await loadPreset('tier', 'B1', 'en'));     // Most detailed and lengthy answers.
+}
+
+testPresetI18n();
+```
 
 ---
 
-(이하 기존 "사용량 리미트", "문의/이슈", "소개", "주요 특징" (이미 SDK 기능 반영됨), "구조/흐름", "주요 API 엔드포인트", "🎛️ 프리셋/톤/모드 예시", "🛠️ 에러 응답 구조 예시", "📝 tone/mode 조합별 응답 예시", "참고 문서", "기여/문의", Collaborators/Team 정보 등은 유지)
+## 엔드포인트
+
+* 실제 API 호출: `https://api.hua.ai.kr/api/lite-hua`
+* API Key는 [공식 API 사이트](https://api.hua.ai.kr)에서 발급
+
+---
