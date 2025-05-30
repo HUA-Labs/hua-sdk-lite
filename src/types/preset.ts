@@ -2,14 +2,19 @@
 
 export type PresetType = 'tone' | 'mode' | 'tier';
 
-export interface PresetDescription {
-  ko: string;
-  en: string;
-}
+export type SupportedLang = 'en' | 'in-en' | 'kr' | 'pt-br' | 'zh' | 'fr';
+
+export type PresetDescription = {
+  [lang in SupportedLang]?: string;
+};
 
 export interface Preset {
   key: string;
-  ko: string;
-  en: string;
+  en?: string;
+  'in-en'?: string;
+  kr?: string;
+  'pt-br'?: string;
+  zh?: string;
+  fr?: string;
   description: PresetDescription;
 } 

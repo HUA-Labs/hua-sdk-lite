@@ -5,4 +5,5 @@ export * from './types/session';
 // 서비스 export
 export * from './services/message';
 export * from './services/session';
-export * from './services/preset'; 
+export * from './services/preset';
+export * from './services/analyze'; 

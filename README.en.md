@@ -10,6 +10,13 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-✔️-3178c6?logo=typescript)](https://www.typescriptlang.org/)
 
+## 🆕 v1.4.0 Release Highlights
+
+- Exported major utilities/types (analyzeIntent, PresetType, etc.) from the entrypoint (index.ts)
+- Externalized preset (tone/mode/tier) structure to JSON and enhanced i18n support
+- loadPreset now supports a lang parameter for multilingual descriptions
+- Improved type declarations and entrypoint import structure
+
 ## **What is HUA SDK Lite?**
 
 **HUA SDK Lite** is a lightweight TypeScript/JavaScript SDK designed to help you easily integrate emotion-based conversational AI features into your applications. It simplifies interaction with the SUM Chat (HUA System) API, providing session management, message sending, and preset utilization capabilities.
@@ -18,11 +25,11 @@
 
 ## **Main Features**
 
-* **Easy Session Management**: Effortlessly start and manage user-specific conversation sessions with the `createSession` function.
-* **Intelligent Message Sending**: Receive empathic AI responses based on session settings using the `sendMessage` function.
-* **Preset Utilization**: Retrieve descriptions for defined `tone` and `mode` presets with the `loadPreset` function.
-* **TypeScript Support**: All functionalities are typed for robust development.
-* **Lightweight**: Core-feature focused for quick installation and use.
+- **Easy Session Management**: Effortlessly start and manage user-specific conversation sessions with the `createSession` function.
+- **Intelligent Message Sending**: Receive empathic AI responses based on session settings using the `sendMessage` function.
+- **Preset Utilization**: Retrieve descriptions for defined `tone` and `mode` presets with the `loadPreset` function.
+- **TypeScript Support**: All functionalities are typed for robust development.
+- **Lightweight**: Core-feature focused for quick installation and use.
 
 ---
 
@@ -132,16 +139,16 @@ demoApp();
 
 The SDK and API use the following preset values. You can set these via the `options` object when calling `createSession`.
 
-* **`tone`**: Determines the overall emotional feeling of the response.
-  * `gentle`: A soft and mild tone.
-  * `energetic`: A vibrant and enthusiastic tone.
-  * `neutral`: A neutral and calm tone.
-* **`mode`**: Sets the conversational role of the AI.
-  * `companion`: A comfortable, friend-like conversation partner.
-  * `coach`: A goal-oriented role that provides advice.
-  * `listener`: A role that primarily listens and empathizes with the user.
-* **`tier`**: Indicates the style or complexity of the response.
-  * `F2`, `S1`, `B1`
+- **`tone`**: Determines the overall emotional feeling of the response.
+  - `gentle`: A soft and mild tone.
+  - `energetic`: A vibrant and enthusiastic tone.
+  - `neutral`: A neutral and calm tone.
+- **`mode`**: Sets the conversational role of the AI.
+  - `companion`: A comfortable, friend-like conversation partner.
+  - `coach`: A goal-oriented role that provides advice.
+  - `listener`: A role that primarily listens and empathizes with the user.
+- **`tier`**: Indicates the style or complexity of the response.
+  - `F2`, `S1`, `B1`
 
 *Note: If invalid or unsupported values are passed for the `tone`, `mode`, or `tier` parameters, the API system may process that parameter with an internal default value ("default") to generate a response.* (Information based on API documentation)
 

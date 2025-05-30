@@ -1,12 +1,20 @@
 import { loadPreset } from '../src/services/preset';
+import type { PresetType } from '../src/types/preset';
 
 async function testPresetI18n() {
-  console.log(await loadPreset('tone', 'gentle', 'ko')); // 부드럽고 온화한 톤입니다.
-  console.log(await loadPreset('tone', 'gentle', 'en')); // A soft and gentle tone.
-  console.log(await loadPreset('mode', 'coach', 'ko'));  // 목표 지향적이고 조언을 제공하는 역할.
-  console.log(await loadPreset('mode', 'coach', 'en'));  // A goal-oriented and advice-giving role.
-  console.log(await loadPreset('tier', 'B1', 'ko'));     // 가장 상세하고 긴 답변.
-  console.log(await loadPreset('tier', 'B1', 'en'));     // Most detailed and lengthy answers.
+  const langs = ['en', 'in-en', 'kr', 'pt-br', 'zh', 'fr'] as const;
+  const types: { type: PresetType; key: string }[] = [
+    { type: 'tone', key: 'gentle' },
+    { type: 'mode', key: 'companion' },
+    { type: 'tier', key: 'B1' },
+  ];
+
+  for (const lang of langs) {
+    for (const { type, key } of types) {
+      const desc = await loadPreset(type, key, lang);
+      console.log(`[${type}:${key}] (${lang}) →`, desc);
+    }
+  }
 }
 
 testPresetI18n();
