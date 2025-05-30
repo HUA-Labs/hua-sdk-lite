@@ -2,7 +2,7 @@ import { loadPreset } from '../src/services/preset';
 import type { PresetType } from '../src/types/preset';
 
 async function testPresetI18n() {
-  const langs = ['en', 'in-en', 'kr', 'pt-br', 'zh', 'fr'] as const;
+  const langs = ['en', 'in-en', 'ko', 'pt-br', 'zh', 'fr'] as const;
   const types: { type: PresetType; key: string }[] = [
     { type: 'tone', key: 'gentle' },
     { type: 'mode', key: 'companion' },
