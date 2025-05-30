@@ -49,12 +49,12 @@ function getPresetMap(): Record<PresetType, Preset[]> {
   };
 }
 
-const supportedLangs: SupportedLang[] = ['en', 'in-en', 'kr', 'pt-br', 'zh', 'fr'];
+const supportedLangs: SupportedLang[] = ['en', 'in-en', 'ko', 'pt-br', 'zh', 'fr'];
 
 export async function loadPreset(
   type: PresetType,
   key: string,
-  lang: SupportedLang = 'kr'
+  lang: SupportedLang = 'ko'
 ): Promise<string> {
   const preset = getPresetMap()[type].find(p => p.key === key);
   if (preset) {
@@ -62,16 +62,16 @@ export async function loadPreset(
     if (preset.description && preset.description[lang]) {
       return preset.description[lang]!;
     }
-    // description에 해당 언어가 없으면 kr로 fallback
-    if (preset.description && preset.description['kr']) {
-      return preset.description['kr']!;
+    // description에 해당 언어가 없으면 ko로 fallback
+    if (preset.description && preset.description['ko']) {
+      return preset.description['ko']!;
     }
     // 이름 필드 반환 (description이 없을 때)
     if (preset[lang]) {
       return preset[lang]!;
     }
-    if (preset['kr']) {
-      return preset['kr']!;
+    if (preset['ko']) {
+      return preset['ko']!;
     }
     return preset.key;
   } else {
