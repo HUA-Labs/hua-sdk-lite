@@ -1,6 +1,6 @@
 @echo off
 set /p msg="Release commit message: "
-for /f "delims=" %%i in ('node -p "require('./package.json').version"') do set VERSION=%%i
+for /f "delims=" %%i in ('node -p "require('../package.json').version"') do set VERSION=%%i
 git add .
 git commit -m "%msg%"
 git tag v%VERSION%
