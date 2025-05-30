@@ -6,7 +6,7 @@
   "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/HUA-SYSTEM/hua-sdk-lite.git"
+    "url": "git+https://github.com/HUA-Labs/hua-sdk-lite.git"
   },
   "author": "EchoNet-AIs <echonet.ais@gmail.com>",
   "license": "MIT",

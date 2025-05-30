@@ -12,7 +12,7 @@
 
 ## 데모/예제
 
-- [HUA SDK Lite Demo (Vite+React+TS)](https://github.com/HUA-SYSTEM/hua-demo-template)
+- [HUA SDK Lite Demo (Vite+React+TS)](https://github.com/HUA-Labs/hua-demo-template)
   - 실전 프리셋/세션/다국어(i18n) 체험용 데모 앱
 
 ## 빠른 시작

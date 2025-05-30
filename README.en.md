@@ -12,7 +12,7 @@
 
 ## Demo/Example
 
-- [HUA SDK Lite Demo (Vite+React+TS)](https://github.com/HUA-SYSTEM/hua-demo-template)
+- [HUA SDK Lite Demo (Vite+React+TS)](https://github.com/HUA-Labs/hua-demo-template)
   - Real-world demo app for preset/session/i18n experience
 
 ## Quick Start
