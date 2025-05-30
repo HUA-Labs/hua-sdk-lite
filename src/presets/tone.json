@@ -1,29 +1,53 @@
 [
   {
     "key": "gentle",
-    "ko": "부드러운 톤",
     "en": "Gentle tone",
+    "in-en": "Gentle tone (India)",
+    "kr": "부드러운 톤",
+    "pt-br": "Tom suave",
+    "zh": "温柔的语气",
+    "fr": "Ton doux",
     "description": {
-      "ko": "부드럽고 온화한 톤입니다.",
-      "en": "A soft and gentle tone."
+      "en": "A soft and gentle tone.",
+      "in-en": "A caring, gentle way of speaking.",
+      "kr": "부드럽고 온화한 톤입니다.",
+      "pt-br": "Um tom suave e acolhedor.",
+      "zh": "温柔而平和的语气。",
+      "fr": "Un ton doux et apaisant."
     }
   },
   {
     "key": "energetic",
-    "ko": "활기찬 톤",
     "en": "Energetic tone",
+    "in-en": "Energetic tone (India)",
+    "kr": "활기찬 톤",
+    "pt-br": "Tom energético",
+    "zh": "充满活力的语气",
+    "fr": "Ton énergique",
     "description": {
-      "ko": "활기차고 열정적인 톤입니다.",
-      "en": "An energetic and passionate tone."
+      "en": "An energetic and passionate tone.",
+      "in-en": "A lively, full-of-energy style.",
+      "kr": "활기차고 열정적인 톤입니다.",
+      "pt-br": "Um tom enérgico e apaixonado.",
+      "zh": "充满活力和热情的语气。",
+      "fr": "Un ton énergique et passionné."
     }
   },
   {
     "key": "neutral",
-    "ko": "중립 톤",
     "en": "Neutral tone",
+    "in-en": "Neutral tone (India)",
+    "kr": "중립 톤",
+    "pt-br": "Tom neutro",
+    "zh": "中性语气",
+    "fr": "Ton neutre",
     "description": {
-      "ko": "중립적이고 차분한 톤입니다.",
-      "en": "A neutral and calm tone."
+      "en": "A neutral and calm tone.",
+      "in-en": "A calm, balanced way of speaking.",
+      "kr": "중립적이고 차분한 톤입니다.",
+      "pt-br": "Um tom neutro e calmo.",
+      "zh": "中性而平和的语气。",
+      "fr": "Un ton neutre et calme."
     }
   }
 ] 

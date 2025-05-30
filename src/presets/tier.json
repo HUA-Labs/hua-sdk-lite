@@ -1,29 +1,53 @@
 [
   {
     "key": "F2",
-    "ko": "F2 티어",
     "en": "F2 tier",
+    "in-en": "F2 tier (India)",
+    "kr": "F2 티어",
+    "pt-br": "Nível F2",
+    "zh": "F2等级",
+    "fr": "Niveau F2",
     "description": {
-      "ko": "기본 응답 스타일, 짧고 간결한 답변.",
-      "en": "Basic response style, short and concise answers."
+      "en": "Short and to the point.",
+      "in-en": "Quick reply, just the essentials.",
+      "kr": "짧고 간결한 답변.",
+      "pt-br": "Resposta curta e direta.",
+      "zh": "简短直接的回答。",
+      "fr": "Réponse courte et directe."
     }
   },
   {
     "key": "S1",
-    "ko": "S1 티어",
     "en": "S1 tier",
+    "in-en": "S1 tier (India)",
+    "kr": "S1 티어",
+    "pt-br": "Nível S1",
+    "zh": "S1等级",
+    "fr": "Niveau S1",
     "description": {
-      "ko": "중간 길이, 약간 더 상세한 답변.",
-      "en": "Medium length, slightly more detailed answers."
+      "en": "Balanced, practical answer with some explanation.",
+      "in-en": "Helpful and clear, with a bit more detail.",
+      "kr": "중간 길이, 약간 더 상세한 답변.",
+      "pt-br": "Resposta equilibrada, com explicação prática.",
+      "zh": "适中且实用的回答。",
+      "fr": "Réponse équilibrée, avec des explications pratiques."
     }
   },
   {
     "key": "B1",
-    "ko": "B1 티어",
     "en": "B1 tier",
+    "in-en": "B1 tier (India)",
+    "kr": "B1 티어",
+    "pt-br": "Nível B1",
+    "zh": "B1等级",
+    "fr": "Niveau B1",
     "description": {
-      "ko": "가장 상세하고 긴 답변.",
-      "en": "Most detailed and lengthy answers."
+      "en": "Most detailed and thoughtful answer.",
+      "in-en": "Very detailed and caring response.",
+      "kr": "가장 상세하고 긴 답변.",
+      "pt-br": "Resposta mais detalhada e atenciosa.",
+      "zh": "最详细、最体贴的回答。",
+      "fr": "Réponse la plus détaillée et réfléchie."
     }
   }
 ] 

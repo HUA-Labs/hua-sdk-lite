@@ -13,6 +13,13 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-✔️-3178c6?logo=typescript)](https://www.typescriptlang.org/)
 
+## 🆕 v1.4.0 주요 변경점
+
+- analyzeIntent, PresetType 등 주요 유틸/타입을 엔트리포인트(index.ts)에서 export
+- 프리셋(tone/mode/tier) 구조 외부 JSON 분리 및 다국어(i18n) 지원 강화
+- loadPreset 함수가 lang 파라미터로 다국어 설명 반환 가능
+- 타입 선언(d.ts) 및 엔트리포인트 import 구조 개선
+
 ## **HUA SDK Lite란?**
 
 **HUA SDK Lite**는 감정 기반 대화형 AI 기능을 애플리케이션에 쉽게 통합할 수 있도록 도와주는 경량 TypeScript/JavaScript SDK입니다. SUM Chat (HUA 시스템) API와 간편하게 연동하여, 세션 관리, 메시지 전송, 프리셋 활용 기능을 제공합니다.
@@ -21,11 +28,11 @@
 
 ## **주요 기능**
 
-* **간편한 세션 관리**: `createSession` 함수로 사용자별 대화 세션을 손쉽게 시작하고 관리합니다.
-* **지능형 메시지 전송**: `sendMessage` 함수를 통해 세션 설정을 바탕으로 감응형 AI 응답을 받습니다.
-* **프리셋 활용**: `loadPreset` 함수로 정의된 `tone` 및 `mode` 프리셋 정보를 조회합니다.
-* **TypeScript 지원**: 모든 기능은 타입이 정의되어 있어 안정적인 개발이 가능합니다.
-* **경량화**: 핵심 기능 중심으로 가볍고 빠르게 설치하여 사용할 수 있습니다.
+- **간편한 세션 관리**: `createSession` 함수로 사용자별 대화 세션을 손쉽게 시작하고 관리합니다.
+- **지능형 메시지 전송**: `sendMessage` 함수를 통해 세션 설정을 바탕으로 감응형 AI 응답을 받습니다.
+- **프리셋 활용**: `loadPreset` 함수로 정의된 `tone` 및 `mode` 프리셋 정보를 조회합니다.
+- **TypeScript 지원**: 모든 기능은 타입이 정의되어 있어 안정적인 개발이 가능합니다.
+- **경량화**: 핵심 기능 중심으로 가볍고 빠르게 설치하여 사용할 수 있습니다.
 
 ---
 
@@ -134,18 +141,18 @@ demoApp();
 
 SDK 및 API는 다음과 같은 프리셋 값을 사용합니다. `createSession` 시 `options` 객체를 통해 설정할 수 있습니다.
 
-* **`tone` (어조)**: 응답의 전반적인 감정적 느낌
-  * `gentle`: 부드럽고 온화한 톤
-  * `energetic`: 활기차고 열정적인 톤
-  * `neutral`: 중립적이고 차분한 톤
-* **`mode` (모드)**: AI의 대화 역할
-  * `companion`: 친구처럼 편안한 대화 상대
-  * `coach`: 목표 지향적이고 조언을 제공하는 역할
-  * `listener`: 주로 사용자의 이야기를 듣고 공감하는 역할
-* **`tier` (티어)**: 응답의 스타일이나 복잡성 (예: 응답 길이, 사용 어휘 수준)
-  * `F2`
-  * `S1`
-  * `B1`
+- **`tone` (어조)**: 응답의 전반적인 감정적 느낌
+  - `gentle`: 부드럽고 온화한 톤
+  - `energetic`: 활기차고 열정적인 톤
+  - `neutral`: 중립적이고 차분한 톤
+- **`mode` (모드)**: AI의 대화 역할
+  - `companion`: 친구처럼 편안한 대화 상대
+  - `coach`: 목표 지향적이고 조언을 제공하는 역할
+  - `listener`: 주로 사용자의 이야기를 듣고 공감하는 역할
+- **`tier` (티어)**: 응답의 스타일이나 복잡성 (예: 응답 길이, 사용 어휘 수준)
+  - `F2`
+  - `S1`
+  - `B1`
 
 *참고: `tone`, `mode`, `tier` 파라미터에 유효하지 않거나 지원되지 않는 값을 전달하면, API 시스템은 해당 파라미터를 내부 기본값("default")으로 처리하여 응답을 생성할 수 있습니다.* (API 문서 기반 정보)
 
@@ -155,7 +162,7 @@ SDK 및 API는 다음과 같은 프리셋 값을 사용합니다. `createSession
 
 hua-sdk-lite는 tone/mode/tier 프리셋 정보를 외부 JSON 파일로 관리하며, 한글/영문 등 다국어 설명을 지원합니다.
 
-* 프리셋 구조 예시 (src/presets/tone.json):
+- 프리셋 구조 예시 (src/presets/tone.json):
 
   ```json
   [
@@ -171,7 +178,7 @@ hua-sdk-lite는 tone/mode/tier 프리셋 정보를 외부 JSON 파일로 관리�
   ]
   ```
 
-* SDK 함수에서 원하는 언어로 프리셋 설명을 조회할 수 있습니다.
+- SDK 함수에서 원하는 언어로 프리셋 설명을 조회할 수 있습니다.
 
 ### **프리셋 다국어 예제**
 
@@ -194,7 +201,63 @@ testPresetI18n();
 
 ## 엔드포인트
 
-* 실제 API 호출: `https://api.hua.ai.kr/api/lite-hua`
-* API Key는 [공식 API 사이트](https://api.hua.ai.kr)에서 발급
+- 실제 API 호출: `https://api.hua.ai.kr/api/lite-hua`
+- API Key는 [공식 API 사이트](https://api.hua.ai.kr)에서 발급
+
+---
+
+### 3분 완성! 누구나 해볼 수 있는 초간단 데모
+
+아래 순서대로 따라하면 바로 HUA SDK Lite의 감응형 AI 기능을 체험할 수 있습니다!
+
+---
+
+## 1. 설치
+
+```bash
+npm install hua-sdk-lite
+# 또는 yarn add hua-sdk-lite
+```
+
+## 2. API 키 설정
+
+공식 사이트에서 발급받은 API 키를 환경 변수로 등록하세요.
+
+```bash
+export HUA_API_KEY="<YOUR_API_KEY_HERE>"
+```
+
+- 윈도우 CMD: `set HUA_API_KEY=<YOUR_API_KEY_HERE>`
+- .env 파일 사용 시: `HUA_API_KEY=your_key_here`
+
+## 3. 최소 예제 코드 (복붙해서 실행!)
+
+```typescript
+import { createSession, sendMessage } from 'hua-sdk-lite';
+
+async function quickDemo() {
+  if (!process.env.HUA_API_KEY) {
+    console.error('API 키가 설정되지 않았어요!');
+    return;
+  }
+  // 1. 세션 생성
+  const session = await createSession('demo-user', {
+    tone: 'gentle',
+    mode: 'companion',
+    tier: 'F2',
+  });
+  // 2. 메시지 전송
+  const reply = await sendMessage(session.id, '오늘 하루 힘들었어, 위로해줘!');
+  console.log('AI 응답:', reply);
+}
+
+quickDemo();
+```
+
+## 4. 실행법
+
+```bash
+node demo.js # 또는 ts-node demo.ts
+```
 
 ---

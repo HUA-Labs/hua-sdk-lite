@@ -1,0 +1,38 @@
+[
+  {
+    "key": "gentle",
+    "en": "Gentle tone (customized)",
+    "kr": "내 브랜드만의 부드러운 톤",
+    "description": {
+      "en": "A gentle tone, tailored for our brand.",
+      "kr": "우리 브랜드에 맞춘 부드러운 톤입니다."
+    }
+  },
+  {
+    "key": "companion",
+    "en": "Companion mode (customized)",
+    "kr": "나만의 동반자 모드",
+    "description": {
+      "en": "A friendly, supportive partner, just for our service.",
+      "kr": "우리 서비스만의 친근하고 든든한 동반자."
+    }
+  },
+  {
+    "key": "B1",
+    "en": "B1 tier (customized)",
+    "kr": "가장 상세한 답변 (커스텀)",
+    "description": {
+      "en": "Most detailed and thoughtful answer, customized.",
+      "kr": "우리 서비스에 맞춘 가장 상세한 답변."
+    }
+  },
+  {
+    "key": "playful",
+    "en": "Playful tone",
+    "kr": "장난기 가득한 톤",
+    "description": {
+      "en": "A playful, lighthearted tone.",
+      "kr": "장난스럽고 가벼운 톤입니다."
+    }
+  }
+] 
