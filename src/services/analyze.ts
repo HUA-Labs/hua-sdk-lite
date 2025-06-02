@@ -46,6 +46,12 @@ const intentKeywordMap = {
       tone: 'neutral',
       mode: 'coach',
       reason: 'Advice/solution/worry keyword detected (rule-based mockup)'
+    },
+    {
+      keywords: ["hello", "hi", "hey", "greetings", "good morning", "good afternoon", "good evening"],
+      tone: "neutral",
+      mode: "companion",
+      reason: "Greeting keyword detected (rule-based mockup)"
     }
   ]
 };

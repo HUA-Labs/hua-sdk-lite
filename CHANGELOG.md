@@ -1,118 +1,47 @@
 # CHANGELOG — hua-sdk-lite
 
-## [1.2.0] - 2025-05-28
+## [1.5.0] - 2025-06-02
 
-### SDK 핵심 기능 및 구조 정립 (v0.1 온보딩 가이드 기반)
+Added
 
-- **세션 관리 기능 (`createSession`) 도입:**
-  - `createSession(userId: string, options: SessionOptions): Promise<Session>` 함수를 통해 세션을 명시적으로 생성합니다.
-  - `SessionOptions`에는 `tone: string`, `mode: string`, `tier?: string` (선택적) 파라미터를 포함합니다.
-  - 생성된 세션 정보(ID, 사용자 ID, tone, mode, tier)는 SDK 내부 메모리 저장소에 기록되어 `sendMessage` 호출 시 활용됩니다.
-  - 반환되는 `Session` 객체는 `{ id, userId, tone, mode, tier }` 구조를 가집니다.
+- SDK, Demo, API 전체 다국어(i18n) 지원: 영어/한국어 UI 및 메시지, `lang` 파라미터, 언어 파일 분리, 다국어 프롬프트/에러/로딩 메시지
+- 브라우저 환경에서 환경 변수 처리 개선: `process.env` → `import.meta.env.VITE_HUA_API_KEY`로 변경, 관련 문서/예제/에러 메시지 동기화
+- Node.js 전용 코드(`fs`, `path` 등) 분리: `preset.node.ts`로 이동, 브라우저 번들에서 Node.js 의존성 완전 제거
+- 테스트/마스터 API Key 무제한 호출: `is_test` 플래그가 있는 키는 사용량 제한(429) 없이 호출 가능
 
-- **메시지 전송 기능 (`sendMessage`) 개선:**
-  - `sendMessage(sessionId: string, message: string): Promise<string>` 시그니처로 변경되었습니다.
-  - `sessionId`를 통해 현재 활성화된 세션의 `tone`, `mode`, `tier` 설정을 내부적으로 조회하여 API 요청에 자동으로 포함합니다.
-  - API Key 인증 방식 변경: 기존 직접 전달 방식에서 `process.env.HUA_API_KEY` 환경 변수를 사용하도록 수정되었습니다. (SDK 사용자 측에서 환경 변수 설정 필요)
-  - API 응답 문자열에 "🤖 감응 응답: " 접두어가 일괄적으로 추가되어 반환됩니다.
-  - 필수 정보(API 키, 유효한 세션 ID) 누락 시 명확한 오류 메시지를 반환하도록 오류 처리가 강화되었습니다.
+Changed
 
-- **프리셋 로딩 기능 (`loadPreset`) 도입:**
-  - `loadPreset(type: 'tone' | 'mode', key: string): Promise<string>` 함수를 통해 특정 `tone` 또는 `mode` 프리셋에 대한 설명을 불러올 수 있습니다.
-  - 존재하지 않는 프리셋 요청 시 오류를 반환합니다.
+- 모든 안내/에러/로딩 메시지가 선택 언어로 표시되도록 개선
+- 인텐트 분석(의도 매칭) 로직 확장: 영어 인사 및 주요 키워드 매칭 강화, 영어 모드에서 자연스러운 응답 제공
+- README 및 문서 최신화: 환경 변수, 다국어 지원, 개발/테스트 방법 등 반영
 
-- **타입 정의 업데이트:**
-  - `SessionOptions`, `Session` 등 SDK 전반의 타입 정의가 실제 사용 파라미터 (`tone`, `mode`, `tier?`)를 명확히 반영하도록 업데이트되었습니다.
+Fixed
 
-- **`tier` 파라미터 지원 정식화:**
-  - API 명세 및 사용자 피드백을 반영하여, `tier` 파라미터를 세션 생성 옵션 및 API 호출 데이터에 정식으로 포함하도록 재통합 및 안정화되었습니다.
+- npm link/file: 경로 문제: 로컬 SDK 개발 및 데모 연동 시 발생하던 의존성, 빌드, 캐싱 문제 해결
+- API Key 누락/오류 안내: 키가 없거나 잘못된 경우, 명확한 다국어 안내 메시지 제공
 
-- **예제 코드 (`examples/demo.ts`) 전면 개편:**
-  - 새로운 SDK 사용 흐름 (`createSession` -> `sendMessage`)을 명확히 보여줍니다.
-  - `loadPreset` 및 `tier` 사용법을 포함한 다양한 시나리오 예시를 제공합니다.
-  - API 키 환경 변수 설정 가이드를 포함합니다.
+Known Issues
 
----
+- AI 영어 응답: 현재 백엔드에서 `lang` 파라미터를 받아도 항상 한국어로 응답함(향후 개선 예정)
 
-## [1.1.0] - 2025-05-26
+## [1.4.5] - 2025-05-30
 
-### 최초 실사용 버전 공개
+Added
 
-- 기존 목업 구조 제거, 실제 감응 응답 API와 연동
-- tone/mode/tier 프리셋 대응 로직 정상 작동
-- POST 응답 예시 및 대화 흐름 적용 시작
+- 프리셋 tone/mode/tier 구조 및 국제 표준 언어코드(ko/en) 통일
+- i18n(한/영) 지원 및 타입 선언 강화
+- presets.custom.template.json, 예제, 타입, 서비스, 문서 전체 동기화
 
-### 기능 개선
+Changed
 
-- `sendMessage()` 파라미터 유효성 검증 강화
-- 응답 메시지 tone/mode별 분기 구조 반영
-- API `baseUrl` 기본값 자동 설정
+- 데모/SDK 엔트리포인트, 타입 선언, 예제 코드 최신화
+- tsconfig, index, preset 서비스 등 실전 배포 구조로 개선
 
-### 문서 수정
+Fixed
 
-- README.md 내용과 실제 기능 동기화
-- 사용 예시, 오류 대응 로직 예제 추가
+- 기타 불필요 파일 정리 및 패키지 버전 1.4.4로 업데이트
 
----
-
-## [1.0.1] - 2025-05-25
-
-### 임시 핫픽스
-
-- README 기반 사용자 혼동 해소용 오류 메시지 수정
-- 내부 구조 정비 목적의 가벼운 조정
-
----
-
-## [1.0.0] - 2025-05-24
-
-### 초기 릴리즈 (목업 기반)
-
-- `sendMessage()` 함수 정의
-- tone/mode/tier 구조 선언만 존재, 실제 응답 없음
-- README.md와 기능 간 차이 존재
-
-## [1.2.1] - 2025-05-29
-
-### 패키징/배포 자동화 및 타입스크립트 빌드 개선
-
-- npm 패키지 구조 최적화: `dist/` 빌드 산출물만 포함, README/LISENCE만 추가
-- TypeScript 빌드 및 타입 선언(.d.ts) 자동 생성 구조 확립 (`tsconfig.json` 신규 작성)
-- Node.js 환경 타입(@types/node) 명시적 도입, process.env 등 타입 에러 해결
-- 프리셋 서비스 타입 명확화로 TypeScript 인덱싱 에러 해결
-- package.json: main/types/scripts/files 등 npm 배포 표준에 맞게 정비
-- prepublishOnly 스크립트로 배포 전 자동 빌드
-- 기타: 내부 예제/문서/테스트 등은 패키지에서 제외
-
-## [1.3.0] - 2025-05-30
-
-### 프리셋 구조 외부화 및 다국어(i18n) 지원
-
-- tone/mode/tier 프리셋 정보를 외부 JSON 파일로 분리, 유지보수 및 확장성 강화
-- 각 프리셋에 한글/영문 등 다국어 설명 및 뉘앙스 정보 포함
-- loadPreset 함수가 언어 파라미터(lang)를 받아 다국어 설명 반환 가능
-- 프리셋 타입(Preset, PresetDescription 등) 및 서비스 코드 리팩토링
-- README 및 예제 코드에 프리셋 다국어 사용법 추가
-- (향후) 기여자/서비스별 프리셋 확장, 다국어 추가, 에러 구조 표준화 등 확장 기반 마련
-
-## [1.4.0] - 2024-05-30
-
-### Added
-
-- 엔트리포인트(index.ts)에서 analyzeIntent, PresetType 등 주요 유틸/타입 export
-- 프리셋(tone/mode/tier) 구조 외부 JSON 분리 및 다국어(i18n) 지원 강화
-- loadPreset 함수가 lang 파라미터로 다국어 설명 반환 가능
-
-### Changed
-
-- 타입 선언(d.ts) 및 엔트리포인트 import 구조 개선
-- README/예제 코드 최신화 (3분 완성 예제, 다국어 프리셋 사용법 등)
-
-### Fixed
-
-- 프리셋 타입/서비스 코드 리팩토링 및 타입 일관성 강화
-
-### Note
+Note
 
 - 향후 기여자/서비스별 프리셋 확장, 다국어 추가, 에러 구조 표준화 등 확장 기반 마련
 
@@ -137,23 +66,109 @@ Note
 
 - 향후 기여자/서비스별 프리셋 확장, 다국어 추가, 에러 구조 표준화 등 확장 기반 마련
 
-## [1.4.5] - 2025-05-30
+## [1.4.0] - 2024-05-30
 
 Added
 
-- 프리셋 tone/mode/tier 구조 및 국제 표준 언어코드(ko/en) 통일
-- i18n(한/영) 지원 및 타입 선언 강화
-- presets.custom.template.json, 예제, 타입, 서비스, 문서 전체 동기화
+- 엔트리포인트(index.ts)에서 analyzeIntent, PresetType 등 주요 유틸/타입 export
+- 프리셋(tone/mode/tier) 구조 외부 JSON 분리 및 다국어(i18n) 지원 강화
+- loadPreset 함수가 lang 파라미터로 다국어 설명 반환 가능
 
 Changed
 
-- 데모/SDK 엔트리포인트, 타입 선언, 예제 코드 최신화
-- tsconfig, index, preset 서비스 등 실전 배포 구조로 개선
+- 타입 선언(d.ts) 및 엔트리포인트 import 구조 개선
+- README/예제 코드 최신화 (3분 완성 예제, 다국어 프리셋 사용법 등)
 
 Fixed
 
-- 기타 불필요 파일 정리 및 패키지 버전 1.4.4로 업데이트
+- 프리셋 타입/서비스 코드 리팩토링 및 타입 일관성 강화
 
 Note
 
 - 향후 기여자/서비스별 프리셋 확장, 다국어 추가, 에러 구조 표준화 등 확장 기반 마련
+
+## [1.3.0] - 2025-05-30
+
+Added
+
+- tone/mode/tier 프리셋 정보를 외부 JSON 파일로 분리, 유지보수 및 확장성 강화
+- 각 프리셋에 한글/영문 등 다국어 설명 및 뉘앙스 정보 포함
+- loadPreset 함수가 언어 파라미터(lang)를 받아 다국어 설명 반환 가능
+- 프리셋 타입(Preset, PresetDescription 등) 및 서비스 코드 리팩토링
+- README 및 예제 코드에 프리셋 다국어 사용법 추가
+
+Note
+
+- (향후) 기여자/서비스별 프리셋 확장, 다국어 추가, 에러 구조 표준화 등 확장 기반 마련
+
+## [1.2.1] - 2025-05-29
+
+Added
+
+- npm 패키지 구조 최적화: `dist/` 빌드 산출물만 포함, README/LISENCE만 추가
+- TypeScript 빌드 및 타입 선언(.d.ts) 자동 생성 구조 확립 (`tsconfig.json` 신규 작성)
+- Node.js 환경 타입(@types/node) 명시적 도입, process.env 등 타입 에러 해결
+- 프리셋 서비스 타입 명확화로 TypeScript 인덱싱 에러 해결
+- package.json: main/types/scripts/files 등 npm 배포 표준에 맞게 정비
+- prepublishOnly 스크립트로 배포 전 자동 빌드
+
+Changed
+
+- 기타: 내부 예제/문서/테스트 등은 패키지에서 제외
+
+## [1.2.0] - 2025-05-28
+
+Added
+
+- 세션 관리 기능 (`createSession`)
+- 메시지 전송 기능 개선 (`sendMessage`)
+- 프리셋 로딩 기능 (`loadPreset`)
+- 타입 정의 업데이트
+- `tier` 파라미터 지원 정식화
+- 예제 코드 전면 개편
+
+Changed
+
+- API Key 인증 방식 변경: 직접 전달 → 환경 변수(`process.env.HUA_API_KEY`)
+- 오류 메시지 및 응답 구조 개선
+
+Fixed
+
+- 필수 정보 누락 시 명확한 오류 메시지 반환
+
+## [1.1.0] - 2025-05-26
+
+Added
+
+- 최초 실사용 버전 공개: 기존 목업 구조 제거, 실제 감응 응답 API와 연동
+- tone/mode/tier 프리셋 대응 로직 정상 작동
+- POST 응답 예시 및 대화 흐름 적용 시작
+
+Changed
+
+- `sendMessage()` 파라미터 유효성 검증 강화
+- 응답 메시지 tone/mode별 분기 구조 반영
+- API `baseUrl` 기본값 자동 설정
+
+Fixed
+
+- README.md 내용과 실제 기능 동기화
+- 사용 예시, 오류 대응 로직 예제 추가
+
+## [1.0.1] - 2025-05-25
+
+Fixed
+
+- README 기반 사용자 혼동 해소용 오류 메시지 수정
+- 내부 구조 정비 목적의 가벼운 조정
+
+## [1.0.0] - 2025-05-24
+
+Added
+
+- `sendMessage()` 함수 정의
+- tone/mode/tier 구조 선언만 존재, 실제 응답 없음
+
+Note
+
+- README.md와 기능 간 차이 존재

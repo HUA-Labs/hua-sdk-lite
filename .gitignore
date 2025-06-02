@@ -34,4 +34,4 @@ logs
 *.log
 
 # Docs (internal)
-docs/ 
+docs/private/
