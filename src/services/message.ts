@@ -8,21 +8,24 @@ export async function sendMessage(sessionId: string, message: string): Promise<s
     throw new Error(`Session not found for ID: ${sessionId}`);
   }
 
-  const apiKey = process.env.HUA_API_KEY;
+  let apiKey: string | undefined;
+
+  if (typeof window !== 'undefined') {
+    // 브라우저 환경: Vite의 환경변수 사용
+    apiKey = (import.meta as any).env.VITE_HUA_API_KEY;
+  } else {
+    // Node.js 환경
+    apiKey = process.env.HUA_API_KEY;
+  }
+
   if (!apiKey) {
     throw new Error('HUA_API_KEY environment variable is not set.');
   }
 
-  const { tone, mode, tier } = sessionDetails; // Extract tier
+  const { tone, mode, tier, lang } = sessionDetails; // Extract tier and lang
 
-  // Construct payload, conditionally adding tier if it exists
-  const payload: {
-    session_id: string;
-    text: string;
-    tone: string;
-    mode: string;
-    tier?: string; // Make tier optional in payload type
-  } = {
+  // Construct payload, conditionally adding tier and lang if they exist
+  const payload: any = {
     session_id: sessionId,
     text: message,
     tone,
@@ -31,6 +34,10 @@ export async function sendMessage(sessionId: string, message: string): Promise<s
 
   if (tier !== undefined) { // Only add tier to payload if it has a value
     payload.tier = tier;
+  }
+
+  if (lang !== undefined) {
+    payload.lang = lang;
   }
 
   const res = await fetch('https://api.hua.ai.kr/api/lite-hua', {

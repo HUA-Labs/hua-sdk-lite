@@ -8,6 +8,7 @@ interface StoredSessionDetails {
   tone: string;
   mode: string;
   tier?: string; // Re-added tier
+  lang: string;
 }
 
 const sessionStore: Record<string, StoredSessionDetails> = {};
@@ -17,23 +18,14 @@ export function getSessionDetails(sessionId: string): StoredSessionDetails | und
   return sessionStore[sessionId];
 }
 
-export async function createSession(userId: string, options: SessionOptions): Promise<Session> {
-  const id = `session-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
-  
-  // Store session details in the sessionStore
+export async function createSession(userId: string, options: { tone: string, mode: string, tier?: string, lang?: string }) {
+  const id = `session-${Date.now()}-${Math.floor(Math.random() * 1e4)}`;
   sessionStore[id] = {
     userId,
     tone: options.tone,
     mode: options.mode,
-    tier: options.tier, // Added tier
+    tier: options.tier,
+    lang: options.lang || 'ko',
   };
-  
-  // Return the session object, including tier
-  return {
-    id,
-    userId,
-    tone: options.tone,
-    mode: options.mode,
-    tier: options.tier, // Added tier
-  };
+  return { id, ...sessionStore[id] };
 }

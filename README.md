@@ -9,6 +9,7 @@
 - presets.custom.template.json, 예제, 타입, 서비스, 문서 전체 동기화
 - 데모/SDK 엔트리포인트, 타입 선언, 예제 코드 최신화
 - 커스터마이즈 프리셋 적용 및 실전 배포 구조
+- 세션 생성 시 lang 옵션 지원, sendMessage에서 lang이 API로 전달됨
 
 ## 데모/예제
 
@@ -32,21 +33,32 @@ const session = await createSession('user-id', {
   tone: 'gentle',
   mode: 'companion',
   tier: 'F2',
+  lang: 'en', // 언어 옵션 추가
 });
-const reply = await sendMessage(session.id, '안녕!');
+const reply = await sendMessage(session.id, 'Hello!');
 ```
+
+## 다국어(i18n) 지원
+
+- 세션 생성 시 lang 옵션을 지정하면, 해당 언어로 AI 응답을 받을 수 있습니다. (서버 지원 필요)
+- UI 안내 메시지는 언어별 리소스에서 동적으로 불러옵니다.
 
 ## 커스터마이즈 프리셋 적용
 
 - 프로젝트 루트에 presets.custom.json 파일을 두면, 해당 key의 프리셋이 override/merge 됩니다.
 - 예: gentle, companion, B1, playful 등
 
-## 주요 변경점 (v1.4.4)
+## 테스트/마스터 API 키
+
+- is_test=true로 발급된 API 키는 usage 제한 없이 무제한 호출이 가능합니다.
+
+## 주요 변경점 (v1.4.5)
 
 - 프리셋 구조 및 국제 표준 언어코드(ko/en) 통일
 - i18n(한/영) 지원 및 타입 선언 강화
 - 예제, 타입, 서비스, 문서 전체 동기화
 - 실전 배포 구조로 개선
+- lang 파라미터 및 다국어 안내(i18n) 지원
 
 ## 라이선스
 
@@ -139,29 +151,25 @@ async function demoApp() {
     };
     
     const session = await createSession(userId, sessionOptions);
-    console.log('
-[세션 생성 완료]');
+    console.log('세션 생성 완료');
     console.log('세션 ID:', session.id);
     console.log('설정된 Tone:', session.tone);
     console.log('설정된 Mode:', session.mode);
     console.log('설정된 Tier:', session.tier);
     // 예상 출력: [세션 생성 완료] { id: 'session-xxxx', userId: 'user-quickstart-001', tone: 'gentle', mode: 'companion', tier: 'F2' }
 
-
     // 3. 메시지 전송
     // 생성된 세션의 ID와 사용자 메시지를 전달합니다.
     // tone, mode, tier는 세션에 저장된 값을 사용합니다.
     const userMessage = '오늘 하루 정말 힘들었어, 위로해 줄 수 있을까?';
-    console.log(`
-[메시지 전송] "${userMessage}" (세션 ID: ${session.id})`);
+    console.log(`[메시지 전송] "${userMessage}" (세션 ID: ${session.id})`);
     
     const empathicReply = await sendMessage(session.id, userMessage);
     console.log('[AI 감응 응답]', empathicReply); 
     // 예상 출력: [AI 감응 응답] 🤖 감응 응답: [API 실제 응답]
 
     // 4. (선택 사항) 프리셋 정보 로딩
-    console.log("
-[프리셋 정보 로딩 예시]");
+    console.log("[프리셋 정보 로딩 예시]");
     const gentleToneInfo = await loadPreset('tone', 'gentle');
     console.log("Tone 'gentle' 설명:", gentleToneInfo); // "부드러운 톤입니다."
     
@@ -178,8 +186,7 @@ async function demoApp() {
 
   } catch (error) {
     // 타입 단언(as Error)을 사용하여 error.message 및 error.stack에 접근
-    console.error('
-[SDK 데모 실행 중 오류 발생]', (error as Error).message);
+    console.error('[SDK 데모 실행 중 오류 발생]', (error as Error).message);
     if ((error as Error).stack) {
       console.error((error as Error).stack);
     }

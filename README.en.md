@@ -9,6 +9,7 @@
 - Synchronized presets.custom.template.json, examples, types, services, and documentation
 - Updated demo/SDK entrypoint, type declarations, and example code
 - Customizable presets and production-ready structure
+- Session creation supports lang parameter; sendMessage transmits lang to API
 
 ## Demo/Example
 
@@ -32,14 +33,24 @@ const session = await createSession('user-id', {
   tone: 'gentle',
   mode: 'companion',
   tier: 'F2',
+  lang: 'en', // language option
 });
 const reply = await sendMessage(session.id, 'Hello!');
 ```
+
+## i18n Support
+
+- Specify the lang option when creating a session to receive AI responses in that language (if supported by the server).
+- All UI messages are dynamically loaded from language resources (en/ko).
 
 ## Custom Preset
 
 - Place a `presets.custom.json` file in your project root to override/merge preset keys.
 - Example: gentle, companion, B1, playful, etc.
+
+## Test/Master API Keys
+
+- API keys issued with is_test=true have no usage limits (unlimited calls).
 
 ## Changelog (v1.4.5)
 
@@ -47,6 +58,7 @@ const reply = await sendMessage(session.id, 'Hello!');
 - Enhanced i18n (Korean/English) support and type declarations
 - Synchronized examples, types, services, and documentation
 - Improved production-ready structure
+- Added lang parameter and i18n UI support
 
 ## License
 
