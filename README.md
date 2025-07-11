@@ -9,7 +9,7 @@ HUA Lite API를 위한 TypeScript SDK입니다. 감정 인식 AI 챗봇과 쉽�
 [![Node.js](https://img.shields.io/badge/Node.js-339933?logo=nodedotjs&logoColor=white)](https://nodejs.org/)
 [![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](https://github.com/HUA-Labs/hua-sdk-lite/releases/tag/v2.0.0)
 
-[English Documentation (README.en.md)](./README.en.md)
+[English Documentation (README.en.md)](https://github.com/HUA-Labs/hua-sdk-lite/blob/v2/README.en.md))
 
 ## 주요 기능
 
