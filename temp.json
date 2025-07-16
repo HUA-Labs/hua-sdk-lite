@@ -1,6 +1,7 @@
+{  
 {
   "name": "hua-sdk-lite",
-  "version": "2.1.0",
+  "version": "2.0.1",
   "description": "HUA Lite API SDK - Emotional AI Chatbot Integration",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -24,16 +25,12 @@
   "files": [
     "dist",
     "README.md",
-    "README.en.md",
     "LICENSE"
   ],
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
     "prepublishOnly": "npm run build",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
   },
   "devDependencies": {
     "@types/jest": "^30.0.0",
@@ -46,3 +43,8 @@
     "node": ">=16.0.0"
   }
 }
+"test": "jest",  
+"test:watch": "jest --watch",  
+"test:coverage": "jest --coverage",  
+  "devDependencies": {
+  "engines": {

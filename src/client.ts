@@ -43,7 +43,23 @@ export class HUALiteClient {
       throw new MissingApiKeyError();
     }
 
-    this.apiKey = apiKey.trim();
+    // API 키 형식 검증 추가
+    const trimmedKey = apiKey.trim();
+    if (trimmedKey.length < 10) {
+      throw new ValidationError(`API 키는 최소 10자 이상이어야 합니다. 현재 길이: ${trimmedKey.length}`);
+    }
+
+    // API 키 형식 검증
+    // 게스트 키: 64자리 랜덤 문자열
+    // 회원가입 키: hua_ + 랜덤 문자열
+    const guestKeyPattern = /^[A-Za-z0-9\-_]{64}$/;
+    const userKeyPattern = /^hua_[A-Za-z0-9]{20,}$/;
+    
+    if (!guestKeyPattern.test(trimmedKey) && !userKeyPattern.test(trimmedKey)) {
+      throw new ValidationError('API 키는 64자리 랜덤 문자열(게스트) 또는 "hua_"로 시작하는 문자열(회원가입)이어야 합니다.');
+    }
+
+    this.apiKey = trimmedKey;
     this.config = { ...DEFAULT_CONFIG, ...config };
   }
 
@@ -177,16 +193,18 @@ export class HUALiteClient {
           const error = createErrorFromResponse(errorData, response.status);
           
           // 재시도 가능한 에러인지 확인
-          if (attempt < this.config.retries && isRetryableError(error)) {
+          const retryableStatus = [502, 503, 504];
+          if (
+            attempt < this.config.retries &&
+            (isRetryableError(error) || retryableStatus.includes(response.status))
+          ) {
             lastError = error;
-            
             // 재시도 이벤트 발생
             this.emit({
               type: 'retry',
               timestamp: new Date(),
               data: { attempt: attempt + 1, error: error.code }
             });
-
             // 지수 백오프
             const delay = this.config.retryDelay * Math.pow(2, attempt);
             await new Promise(resolve => setTimeout(resolve, delay));
