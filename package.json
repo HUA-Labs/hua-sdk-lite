@@ -1,6 +1,6 @@
 {
   "name": "hua-sdk-lite",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "HUA Lite API SDK - Emotional AI Chatbot Integration",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

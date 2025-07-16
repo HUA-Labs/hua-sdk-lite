@@ -1,4 +1,4 @@
-# HUA SDK Lite v2.1.0
+# HUA SDK Lite v2.1.1
 
 HUA Lite API를 위한 TypeScript SDK입니다. 감정 인식 AI 챗봇과 쉽게 통합할 수 있습니다.
 
@@ -7,13 +7,13 @@ HUA Lite API를 위한 TypeScript SDK입니다. 감정 인식 AI 챗봇과 쉽�
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-339933?logo=nodedotjs&logoColor=white)](https://nodejs.org/)
-[![Version](https://img.shields.io/badge/version-2.1.0-blue.svg)](https://github.com/HUA-Labs/hua-sdk-lite/releases/tag/v2.1.0)
+[![Version](https://img.shields.io/badge/version-2.1.1-blue.svg)](https://github.com/HUA-Labs/hua-sdk-lite/tree/v2)
 
 [English Documentation (README.en.md)](./README.en.md)
 
 ---
 
-## ✨ 주요 기능 (2.1.0)
+## ✨ 주요 기능 (2.1.1)
 
 - **실제 서비스와 동일한 API 키 검증** (게스트: 64자리, 회원: hua_ 접두사)
 - **스마트 재시도 로직** (502/503/504 등 서버 오류 자동 재시도)
@@ -26,7 +26,7 @@ HUA Lite API를 위한 TypeScript SDK입니다. 감정 인식 AI 챗봇과 쉽�
 ## 설치
 
 ```bash
-npm install hua-sdk-lite@2.1.0
+npm install hua-sdk-lite@2.1.1
 ```
 
 ---

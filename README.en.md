@@ -1,4 +1,4 @@
-# HUA SDK Lite v2.1.0
+# HUA SDK Lite v2.1.1
 
 TypeScript SDK for HUA Lite API - Emotional AI Chatbot Integration
 
@@ -7,13 +7,13 @@ TypeScript SDK for HUA Lite API - Emotional AI Chatbot Integration
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-339933?logo=nodedotjs&logoColor=white)](https://nodejs.org/)
-[![Version](https://img.shields.io/badge/version-2.1.0-blue.svg)](https://github.com/HUA-Labs/hua-sdk-lite/releases/tag/v2.1.0)
+[![Version](https://img.shields.io/badge/version-2.1.1-blue.svg)](https://github.com/HUA-Labs/hua-sdk-lite/tree/v2)
 
 [한국어 설명 보기 (README.md)](./README.md)
 
 ---
 
-## ✨ Key Features (2.1.0)
+## ✨ Key Features (2.1.1)
 
 - **Accurate API Key Validation** (Guest: 64-char random, Member: hua_ prefix)
 - **Smart Retry Logic** (Automatic retry for 502/503/504 server errors)
@@ -26,7 +26,7 @@ TypeScript SDK for HUA Lite API - Emotional AI Chatbot Integration
 ## 📦 Installation
 
 ```bash
-npm install hua-sdk-lite@2.1.0
+npm install hua-sdk-lite@2.1.1
 ```
 
 ---
